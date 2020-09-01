@@ -2,9 +2,32 @@
   "name": "transform-ts-contrib",
   "version": "1.0.0",
   "description": "Contrib transformers",
-  "main": "index.js",
-  "repository": "ssh://git@github.com/transform-ts-community/transform-ts-contrib.git",
-  "author": "transform-ts contrib team",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/transform-ts-community/transform-ts-contrib.git"
+  },
+  "author": "transform-ts community team",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "bugs": "https://github.com/transform-ts-community/transform-ts-contrib/issues",
+  "homepage": "https://github.com/transform-ts-community/transform-ts-contrib",
+  "scripts": {
+    "dev": "jest --watch",
+    "test": "jest",
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@tosuke/prettier-config": "^1.0.1",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "transform-ts": "^0.3.0"
+  }
 }
