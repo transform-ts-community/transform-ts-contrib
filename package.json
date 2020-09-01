@@ -1,0 +1,10 @@
+{
+  "name": "transform-ts-contrib",
+  "version": "1.0.0",
+  "description": "Contrib transformers",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/transform-ts-community/transform-ts-contrib.git",
+  "author": "transform-ts contrib team",
+  "license": "MIT",
+  "private": false
+}
