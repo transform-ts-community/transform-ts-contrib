@@ -9,13 +9,13 @@ describe('invalid range', () => {
 
 describe('Number', () => {
   it('throws OufOfMinError', () => {
-    expect($range({ min: 1, max: 3 }, $.number).transform(0)).toEqual(
+    expect($range({ min: 1 }, $.number).transform(0)).toEqual(
       error(ValidationError.from(new OufOfMinError(0, 1))),
     )
   })
 
   it('success validation with equal to the min value', () => {
-    expect($range({ min: 1, max: 3 }, $.number).transform(1)).toEqual(ok(1))
+    expect($range({ min: 1 }, $.number).transform(1)).toEqual(ok(1))
   })
 
   it('success validation between the min and max values', () => {
@@ -23,11 +23,11 @@ describe('Number', () => {
   })
 
   it('success validation with equal to the max value', () => {
-    expect($range({ min: 1, max: 3 }, $.number).transform(3)).toEqual(ok(3))
+    expect($range({ max: 3 }, $.number).transform(3)).toEqual(ok(3))
   })
 
   it('throws OufOfMaxError', () => {
-    expect($range({ min: 1, max: 3 }, $.number).transform(4)).toEqual(
+    expect($range({ max: 3 }, $.number).transform(4)).toEqual(
       error(ValidationError.from(new OufOfMaxError(4, 3))),
     )
   })
@@ -35,13 +35,13 @@ describe('Number', () => {
 
 describe('String', () => {
   it('throws OufOfMinError', () => {
-    expect($range({ min: 1, max: 3 }, $.string).transform('')).toEqual(
+    expect($range({ min: 1 }, $.string).transform('')).toEqual(
       error(ValidationError.from(new OufOfMinError(0, 1))),
     )
   })
 
   it('success validation with equal to the min value', () => {
-    expect($range({ min: 1, max: 3 }, $.string).transform('a')).toEqual(ok('a'))
+    expect($range({ min: 1 }, $.string).transform('a')).toEqual(ok('a'))
   })
 
   it('success validation between the min and max values', () => {
@@ -49,11 +49,11 @@ describe('String', () => {
   })
 
   it('success validation with equal to the max value', () => {
-    expect($range({ min: 1, max: 3 }, $.string).transform('abc')).toEqual(ok('abc'))
+    expect($range({ max: 3 }, $.string).transform('abc')).toEqual(ok('abc'))
   })
 
   it('throws OufOfMaxError', () => {
-    expect($range({ min: 1, max: 3 }, $.string).transform('abcd')).toEqual(
+    expect($range({ max: 3 }, $.string).transform('abcd')).toEqual(
       error(ValidationError.from(new OufOfMaxError(4, 3))),
     )
   })
@@ -61,13 +61,13 @@ describe('String', () => {
 
 describe('Array', () => {
   it('throws OufOfMinError', () => {
-    expect($range({ min: 1, max: 3 }, $.array($.string)).transform([])).toEqual(
+    expect($range({ min: 1 }, $.array($.string)).transform([])).toEqual(
       error(ValidationError.from(new OufOfMinError(0, 1))),
     )
   })
 
   it('success validation with equal to the min value', () => {
-    expect($range({ min: 1, max: 3 }, $.array($.string)).transform(['a'])).toEqual(ok(['a']))
+    expect($range({ min: 1 }, $.array($.string)).transform(['a'])).toEqual(ok(['a']))
   })
 
   it('success validation between the min and max values', () => {
@@ -75,11 +75,11 @@ describe('Array', () => {
   })
 
   it('success validation with equal to the max value', () => {
-    expect($range({ min: 1, max: 3 }, $.array($.string)).transform(['a', 'b', 'c'])).toEqual(ok(['a', 'b', 'c']))
+    expect($range({ max: 3 }, $.array($.string)).transform(['a', 'b', 'c'])).toEqual(ok(['a', 'b', 'c']))
   })
 
   it('throws OufOfMaxError', () => {
-    expect($range({ min: 1, max: 3 }, $.array($.string)).transform(['a', 'b', 'c', 'd'])).toEqual(
+    expect($range({ max: 3 }, $.array($.string)).transform(['a', 'b', 'c', 'd'])).toEqual(
       error(ValidationError.from(new OufOfMaxError(4, 3))),
     )
   })
