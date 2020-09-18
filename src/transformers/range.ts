@@ -1,12 +1,5 @@
 import { error, Transformer, ValidationError } from 'transform-ts'
 
-export class UndefinedRangeError extends Error {
-  constructor() {
-    super(`min and max is undefined.`)
-    this.name = 'UndefinedRangeError'
-  }
-}
-
 export class InvalidRangeError extends Error {
   constructor(readonly min: number, readonly max: number) {
     super(`min "${min}" must be equal to or less than max "${max}"`)
@@ -28,18 +21,19 @@ export class OufOfMaxError extends Error {
   }
 }
 
-export function $range<A>(
-  f: Transformer<number | string | Array<any>, A>,
-  { min, max }: { min?: number; max?: number },
-): Transformer<number | string | Array<any>, A> {
-  return Transformer.from<number | string | Array<any>, A>(u => {
-    if (!min && !max) return error(ValidationError.from(new UndefinedRangeError()))
-    if (min && max && max < min) return error(ValidationError.from(new InvalidRangeError(min, max)))
+export function $range<A extends { length: number } | number, B>(
+  { min, max }: { min: number; max?: number } | { min?: number; max: number },
+  f: Transformer<A, B>,
+): Transformer<A, B> {
+  return Transformer.from<A, B>(u => {
+    if (min !== undefined && max !== undefined && max < min)
+      throw new InvalidRangeError(min, max)
 
     let length: number
 
-    if (Array.isArray(u) || typeof u === 'string') length = u.length
-    else length = u
+    const c: { length: number } | number = u
+    if (typeof c === 'number') length = c
+    else length = c.length
 
     if (min && length < min) return error(ValidationError.from(new OufOfMinError(length, min)))
     if (max && max < length) return error(ValidationError.from(new OufOfMaxError(length, max)))
