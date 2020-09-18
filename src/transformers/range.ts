@@ -25,10 +25,10 @@ export function $range<A extends { length: number } | number, B>(
   { min, max }: { min: number; max?: number } | { min?: number; max: number },
   f: Transformer<A, B>,
 ): Transformer<A, B> {
-  return Transformer.from<A, B>(u => {
-    if (min !== undefined && max !== undefined && max < min)
-      throw new InvalidRangeError(min, max)
+  if (min !== undefined && max !== undefined && max < min)
+    throw new InvalidRangeError(min, max)
 
+  return Transformer.from<A, B>(u => {
     let length: number
 
     const c: { length: number } | number = u
