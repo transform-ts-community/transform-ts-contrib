@@ -35,8 +35,8 @@ export function $range<A extends { length: number } | number, B>(
     if (typeof c === 'number') length = c
     else length = c.length
 
-    if (min && length < min) return error(ValidationError.from(new OufOfMinError(length, min)))
-    if (max && max < length) return error(ValidationError.from(new OufOfMaxError(length, max)))
+    if (min !== undefined && length < min) return error(ValidationError.from(new OufOfMinError(length, min)))
+    if (max !== undefined && max < length) return error(ValidationError.from(new OufOfMaxError(length, max)))
 
     return f.transform(u)
   })
