@@ -32,8 +32,11 @@ export function $range<A extends { length: number } | number, B>(
     let length: number
 
     const c: { length: number } | number = u
-    if (typeof c === 'number') length = c
-    else length = c.length
+    if (typeof c === 'number') {
+      length = c
+    } else {
+      length = c.length
+    }
 
     if (min !== undefined && length < min) return error(ValidationError.from(new OufOfMinError(length, min)))
     if (max !== undefined && max < length) return error(ValidationError.from(new OufOfMaxError(length, max)))
