@@ -22,10 +22,11 @@
     "package.json"
   ],
   "scripts": {
-    "dev": "jest --watch",
-    "test": "jest",
     "build": "tsc -p tsconfig.build.json",
-    "format": "prettier --write \"src/**/*.ts\""
+    "dev": "jest --watch",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublish": "yarn run build",
+    "test": "jest"
   },
   "devDependencies": {
     "@tosuke/prettier-config": "^1.0.1",
