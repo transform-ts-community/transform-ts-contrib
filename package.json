@@ -1,18 +1,23 @@
 {
-  "name": "transform-ts-contrib",
+  "name": "contrib",
   "version": "1.0.0",
-  "description": "Contrib transformers",
+  "description": "transform-ts contrib modules",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/transform-ts-community/transform-ts-contrib.git"
+    "url": "https://github.com/transform-ts/contrib.git"
   },
   "author": "transform-ts community team",
   "license": "MIT",
   "private": false,
-  "bugs": "https://github.com/transform-ts-community/transform-ts-contrib/issues",
-  "homepage": "https://github.com/transform-ts-community/transform-ts-contrib",
+  "bugs": "https://github.com/transform-ts/contrib/issues",
+  "homepage": "https://github.com/transform-ts/contrib",
+  "files": [
+    "dist/**/*",
+    "LICENSE.md",
+    "package.json"
+  ],
   "scripts": {
     "dev": "jest --watch",
     "test": "jest",
