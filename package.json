@@ -11,6 +11,9 @@
   "author": "transform-ts community team",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": "https://github.com/transform-ts/contrib/issues",
   "homepage": "https://github.com/transform-ts/contrib",
   "files": [
