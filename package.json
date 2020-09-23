@@ -1,23 +1,32 @@
 {
-  "name": "transform-ts-contrib",
+  "name": "@transform-ts/contrib",
   "version": "1.0.0",
-  "description": "Contrib transformers",
+  "description": "transform-ts contrib modules",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/transform-ts-community/transform-ts-contrib.git"
+    "url": "https://github.com/transform-ts/contrib.git"
   },
   "author": "transform-ts community team",
   "license": "MIT",
   "private": false,
-  "bugs": "https://github.com/transform-ts-community/transform-ts-contrib/issues",
-  "homepage": "https://github.com/transform-ts-community/transform-ts-contrib",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": "https://github.com/transform-ts/contrib/issues",
+  "homepage": "https://github.com/transform-ts/contrib",
+  "files": [
+    "dist/**/*",
+    "LICENSE.md",
+    "package.json"
+  ],
   "scripts": {
-    "dev": "jest --watch",
-    "test": "jest",
     "build": "tsc -p tsconfig.build.json",
-    "format": "prettier --write \"src/**/*.ts\""
+    "dev": "jest --watch",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublish": "yarn run build",
+    "test": "jest"
   },
   "devDependencies": {
     "@tosuke/prettier-config": "^1.0.1",
