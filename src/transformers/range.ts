@@ -21,7 +21,7 @@ export class OufOfMaxError extends Error {
   }
 }
 
-export function $range<A extends { length: number } | number, B>(
+export function $range<A extends { length: number } | number>(
   { min, max }: { min: number; max?: number } | { min?: number; max: number },
 ): Transformer<A, A> {
   if (min !== undefined && max !== undefined && max < min)
