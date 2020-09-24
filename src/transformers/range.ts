@@ -1,4 +1,4 @@
-import { error, Transformer, ValidationError } from 'transform-ts'
+import { error, ok, Transformer, ValidationError } from 'transform-ts'
 
 export class InvalidRangeError extends Error {
   constructor(readonly min: number, readonly max: number) {
@@ -21,14 +21,13 @@ export class OufOfMaxError extends Error {
   }
 }
 
-export function $range<A extends { length: number } | number, B>(
+export function $range<A extends { length: number } | number>(
   { min, max }: { min: number; max?: number } | { min?: number; max: number },
-  f: Transformer<A, B>,
-): Transformer<A, B> {
+): Transformer<A, A> {
   if (min !== undefined && max !== undefined && max < min)
     throw new InvalidRangeError(min, max)
 
-  return Transformer.from<A, B>(u => {
+  return Transformer.from<A, A>(u => {
     let length: number
 
     const c: { length: number } | number = u
@@ -41,6 +40,6 @@ export function $range<A extends { length: number } | number, B>(
     if (min !== undefined && length < min) return error(ValidationError.from(new OufOfMinError(length, min)))
     if (max !== undefined && max < length) return error(ValidationError.from(new OufOfMaxError(length, max)))
 
-    return f.transform(u)
+    return ok(u)
   })
 }
