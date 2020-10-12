@@ -8,5 +8,7 @@ export class IsNotNumericStringError extends Error {
 }
 
 export const $numericString = Transformer.from<string, number>(text =>
-  Number.isNaN(Number(text)) ? error(ValidationError.from(new IsNotNumericStringError(text))) : ok(Number(text)),
+  Number.isNaN(Number.parseFloat(text))
+    ? error(ValidationError.from(new IsNotNumericStringError(text)))
+    : ok(Number.parseFloat(text)),
 )
